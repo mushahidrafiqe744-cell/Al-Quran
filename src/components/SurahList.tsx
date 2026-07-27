@@ -3,7 +3,7 @@ import { Surah, Bookmark, ReadingHistory } from '../types';
 import { ALL_SURAHS } from '../data/quranData';
 import { Search, Filter, BookOpen, Clock, Star, LayoutGrid, List, Sparkles, Volume2 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { MakkahKaabaIcon } from './MakkahKaabaIcon';
+import { MakkahKaabaIcon, MadinahMosqueIcon } from './MakkahKaabaIcon';
 
 interface SurahListProps {
   onSelectSurah: (surahNumber: number) => void;
@@ -219,12 +219,17 @@ export const SurahList: React.FC<SurahListProps> = ({
                               {isBookmarked && (
                                 <Star className="w-4 h-4 fill-[#C5A059] text-[#C5A059]" />
                               )}
-                              <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide border ${
+                              <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide border flex items-center gap-1 ${
                                 surah.revelationType === 'Meccan' 
                                   ? 'bg-emerald-950/60 text-emerald-300 border-emerald-500/30' 
                                   : 'bg-[#C5A059]/20 text-[#FFF1CB] border-[#C5A059]/40'
                               }`}>
-                                {surah.revelationType}
+                                {surah.revelationType === 'Meccan' ? (
+                                  <MakkahKaabaIcon size={16} />
+                                ) : (
+                                  <MadinahMosqueIcon size={16} />
+                                )}
+                                <span>{surah.revelationType}</span>
                               </span>
                               <button
                                 onClick={(e) => {

@@ -16,6 +16,7 @@ import {
   Grid
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { MakkahKaabaIcon } from './MakkahKaabaIcon';
 
 interface NavbarProps {
   activeTab: string;
@@ -72,13 +73,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => setActiveTab('home')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-[#C5A059]/20 to-emerald-950/40 border border-[#C5A059]/40 flex items-center justify-center shadow-lg group-hover:border-[#C5A059] transition-all">
-              <span className="font-amiri text-2xl font-bold text-[#C5A059]">القرآن</span>
+            <div className="relative p-1 rounded-xl bg-gradient-to-br from-[#C5A059]/20 to-emerald-950/40 border border-[#C5A059]/40 flex items-center justify-center shadow-lg group-hover:border-[#C5A059] transition-all">
+              <MakkahKaabaIcon size={28} />
               <div className="absolute -inset-0.5 rounded-xl bg-[#C5A059]/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
             <div>
-              <span className="font-cinzel text-lg sm:text-xl font-bold tracking-wider gold-gradient-text block leading-none">
-                AL-QURAN
+              <span className="font-cinzel text-lg sm:text-xl font-bold tracking-wider gold-gradient-text block leading-none flex items-center gap-1.5">
+                <span>AL-QURAN</span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#C5A059]/20 text-[#FFF1CB] border border-[#C5A059]/40">مكة</span>
               </span>
               <span className="text-[10px] text-emerald-400 tracking-widest uppercase font-medium">
                 The Divine Guidance

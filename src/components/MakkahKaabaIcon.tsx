@@ -33,3 +33,31 @@ export const MakkahKaabaIcon: React.FC<MakkahKaabaIconProps> = ({ size = 34, cla
     </svg>
   </div>
 );
+
+export const MadinahMosqueIcon: React.FC<MakkahKaabaIconProps> = ({ size = 34, className = '' }) => (
+  <div className={`relative flex items-center justify-center pointer-events-none ${className}`}>
+    <div className="absolute w-10 h-10 rounded-full bg-emerald-500/40 blur-md animate-pulse"></div>
+    <svg 
+      width={size} 
+      height={size} 
+      viewBox="0 0 64 64" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg" 
+      className="relative z-10 filter drop-shadow-[0_0_12px_rgba(16,185,129,0.9)]"
+    >
+      {/* Outer Circle */}
+      <circle cx="32" cy="32" r="28" fill="#080C0B" stroke="#10B981" strokeWidth="2" />
+      {/* Green Dome */}
+      <path d="M18 36C18 24 24 16 32 16C40 16 46 24 46 36H18Z" fill="#10B981" stroke="#34D399" strokeWidth="1.5" />
+      {/* Crescent Finial */}
+      <path d="M32 8V16" stroke="#FFD700" strokeWidth="2" strokeLinecap="round" />
+      <path d="M30 9C32 9 33.5 10.5 33.5 12.5C33.5 14.5 32 16 30 16C31 16 32.5 14.5 32.5 12.5C32.5 10.5 31 9 30 9Z" fill="#FFD700" />
+      {/* Base Building */}
+      <rect x="16" y="36" width="32" height="16" rx="2" fill="#121D19" stroke="#C5A059" strokeWidth="1.5" />
+      {/* Arch Doors */}
+      <path d="M22 52V42C22 40 24 38 26 38C28 38 30 40 30 42V52H22Z" fill="#080C0B" stroke="#FFD700" strokeWidth="1" />
+      <path d="M34 52V42C34 40 36 38 38 38C40 38 42 40 42 42V52H34Z" fill="#080C0B" stroke="#FFD700" strokeWidth="1" />
+    </svg>
+  </div>
+);
+
