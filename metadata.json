@@ -1,0 +1,6 @@
+{
+  "name": "Al-Quran – The Divine Guidance",
+  "description": "A world-class, premium, modern, and spiritually inspiring digital Quran platform featuring complete 114 Surahs, multiple reciters, word-by-word translations, Tajweed highlighting, AI Quran Assistant, Prayer Times, Qibla compass, and Islamic tools.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

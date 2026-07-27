@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-amiri {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+  }
+  .font-scheherazade {
+    font-family: 'Scheherazade New', 'Amiri', serif;
+  }
+  .font-naskh {
+    font-family: 'Noto Naskh Arabic', sans-serif;
+  }
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+/* Custom Glassmorphism & Gold/Emerald Accents for Sophisticated Dark Theme */
+.glass-panel {
+  background: rgba(12, 19, 17, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.glass-panel-dark {
+  background: rgba(8, 12, 11, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+}
+
+.glass-panel-light {
+  background: rgba(18, 28, 25, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF1CB 0%, #C5A059 50%, #9A7B38 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.emerald-gradient-text {
+  background: linear-gradient(135deg, #a7f3d0 0%, #10b981 50%, #064e3b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 25px -5px rgba(197, 160, 89, 0.3);
+}
+
+.emerald-border-glow {
+  box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.25);
+}
+
+/* Islamic Geometric Pattern Background Overlay */
+.islamic-pattern-bg {
+  background-image: radial-gradient(rgba(197, 160, 89, 0.12) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.islamic-star-pattern {
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l7.5 22.5H60L42 36l7.5 22.5L30 45l-19.5 13.5L18 36 0 22.5h22.5z' fill='%23C5A059' fill-opacity='0.04' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-18px) scale(1.02); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.08); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 10s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(197,160,89,0.25) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* 4-Color Running Border Effect */
+@keyframes rotate-conic {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.four-color-border-box {
+  position: relative;
+  border-radius: 1.5rem;
+  padding: 3px;
+  overflow: hidden;
+  background: transparent;
+  z-index: 1;
+}
+
+.four-color-border-box::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(
+    from 0deg,
+    #10b981 0deg,   /* Emerald Green */
+    #C5A059 90deg,  /* Royal Gold */
+    #06b6d4 180deg, /* Radiant Cyan */
+    #f43f5e 270deg, /* Ruby Rose */
+    #10b981 360deg  /* Emerald Green */
+  );
+  animation: rotate-conic 5s linear infinite;
+  z-index: -2;
+}
+
+.four-color-border-inner {
+  position: relative;
+  background: #0A100E;
+  border-radius: calc(1.5rem - 3px);
+  z-index: 1;
+}
+
+.four-color-card-glow {
+  position: relative;
+  border-radius: 1rem;
+  padding: 2px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.four-color-card-glow::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(
+    from 0deg,
+    #10b981,
+    #C5A059,
+    #06b6d4,
+    #f43f5e,
+    #10b981
+  );
+  animation: rotate-conic 6s linear infinite;
+  z-index: -2;
+  opacity: 0.85;
+}
+
+.four-color-card-glow-hover::before {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.four-color-card-glow-hover:hover::before {
+  opacity: 1;
+}
+
+/* Running Makkah Logo Perimeter Animation */
+@keyframes makkah-orbit {
+  0% {
+    top: 0%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+  }
+  25% {
+    top: 0%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: 100%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+  }
+  75% {
+    top: 100%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 0%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.makkah-runner-item {
+  position: absolute;
+  z-index: 30;
+  pointer-events: none;
+  animation: makkah-orbit 8s linear infinite;
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.9));
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080C0B;
+}
+::-webkit-scrollbar-thumb {
+  background: #C5A059;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9A7B38;
+}
+
+/* Tajweed Colors */
+.tajweed-madd { color: #ec4899; } /* Pink / Red */
+.tajweed-ghunnah { color: #10b981; } /* Green */
+.tajweed-qalqalah { color: #f59e0b; } /* Gold / Orange */
+.tajweed-ikha { color: #3b82f6; } /* Blue */
+.tajweed-idgham { color: #8b5cf6; } /* Purple */
+
