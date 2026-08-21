@@ -141,7 +141,18 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
   };
 
   return (
-    <div id="quran-reader" className="min-h-screen bg-[#080C0B] text-slate-100 pt-20 pb-24">
+    <div id="quran-reader" className="min-h-screen bg-[#080C0B] text-slate-100 pt-20 pb-24 relative">
+      {/* Unique beautiful backdrop: Clean sacred Quran pages */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1600&q=80"
+          alt="Quran Pages Backdrop"
+          className="w-full h-full object-cover object-center opacity-15 filter brightness-[45%] contrast-100"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/85 to-[#080C0B]/90"></div>
+      </div>
+
+      <div className="relative z-10">
       
       {/* Top Reader Toolbar */}
       <div className="sticky top-16 z-40 bg-[#0A100E]/90 backdrop-blur-md border-b border-[#C5A059]/20 py-3 shadow-xl">
@@ -797,6 +808,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
         )}
       </AnimatePresence>
 
+      </div>
     </div>
   );
 };

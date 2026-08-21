@@ -26,10 +26,10 @@ export const Hero: React.FC<HeroProps> = ({
         <img
           src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=2000&q=80"
           alt="Mosque Sunrise Background"
-          className="w-full h-full object-cover object-center opacity-20 filter brightness-90 mix-blend-luminosity scale-105 animate-float-slow"
+          className="w-full h-full object-cover object-center opacity-85 filter brightness-95 scale-100 transition-all duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/85 to-[#080C0B]/90"></div>
-        <div className="absolute inset-0 islamic-pattern-bg opacity-70"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/30 to-[#080C0B]/20"></div>
+        <div className="absolute inset-0 islamic-pattern-bg opacity-20"></div>
       </div>
 
       {/* Floating Light Orbs */}

@@ -64,8 +64,18 @@ export const IslamicTools: React.FC = () => {
     : DAILY_DUAS.filter(d => d.category === selectedDuaCat);
 
   return (
-    <section id="islamic-tools" className="py-16 bg-[#080C0B] text-slate-100 min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="islamic-tools" className="py-16 bg-[#080C0B] text-slate-100 min-h-screen relative">
+      {/* Unique beautiful backdrop: Warm Islamic architectural geometry */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1600&q=80"
+          alt="Islamic Tools Backdrop"
+          className="w-full h-full object-cover object-center opacity-25 filter brightness-[40%] contrast-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/60 to-[#080C0B]/85"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-10">

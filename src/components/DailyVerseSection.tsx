@@ -28,8 +28,18 @@ export const DailyVerseSection: React.FC<DailyVerseSectionProps> = ({ onReadInFu
   };
 
   return (
-    <section className="py-16 bg-[#080C0B] text-slate-100 overflow-hidden">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+    <section className="py-16 bg-[#080C0B] text-slate-100 overflow-hidden relative">
+      {/* Unique beautiful backdrop: Quran with warm lighting */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1609599006353-e629f1d29718?auto=format&fit=crop&w=1600&q=80"
+          alt="Daily Quran Verse Background"
+          className="w-full h-full object-cover object-center opacity-30 filter brightness-[45%] contrast-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/60 to-[#080C0B]/80"></div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Outer 4-Color Running Border Box with Orbiting Makkah Logo */}
         <div className="relative four-color-border-box shadow-[0_25px_60px_rgba(0,0,0,0.8)]">

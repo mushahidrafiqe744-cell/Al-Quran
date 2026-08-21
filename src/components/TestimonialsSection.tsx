@@ -4,8 +4,18 @@ import { Heart, Star, Quote } from 'lucide-react';
 
 export const TestimonialsSection: React.FC = () => {
   return (
-    <section className="py-16 bg-[#080C0B] text-slate-100">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 bg-[#080C0B] text-slate-100 relative">
+      {/* Unique beautiful backdrop: Peaceful mosque light rays */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=80"
+          alt="Testimonials Backdrop"
+          className="w-full h-full object-cover object-center opacity-30 filter brightness-[45%] contrast-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/60 to-[#080C0B]/80"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold uppercase tracking-widest mb-3">

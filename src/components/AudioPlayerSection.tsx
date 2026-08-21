@@ -48,8 +48,18 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
   const currentSurah = ALL_SURAHS.find(s => s.number === currentSurahNumber) || ALL_SURAHS[0];
 
   return (
-    <section id="audio-suite" className="py-16 bg-[#080C0B] text-slate-100 min-h-screen flex items-center justify-center">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 w-full">
+    <section id="audio-suite" className="py-16 bg-[#080C0B] text-slate-100 min-h-screen flex items-center justify-center relative">
+      {/* Unique beautiful backdrop: Detailed golden Mosque Dome ceiling */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1600&q=80"
+          alt="Audio Sanctuary Backdrop"
+          className="w-full h-full object-cover object-center opacity-25 filter brightness-[40%] contrast-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/60 to-[#080C0B]/85"></div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 w-full relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-10">

@@ -47,8 +47,18 @@ export const SurahList: React.FC<SurahListProps> = ({
   }, [bookmarks]);
 
   return (
-    <section id="surah-list" className="py-12 bg-[#080C0B] text-slate-100 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="surah-list" className="py-12 bg-[#080C0B] text-slate-100 min-h-screen relative">
+      {/* Unique beautiful backdrop: Madinah Masjid an-Nabawi */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1600&q=80"
+          alt="Madinah Background"
+          className="w-full h-full object-cover object-center opacity-30 filter brightness-[45%] contrast-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/50 to-[#080C0B]/70"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Master Section Wrapper with 4-Color Running Border & Orbiting Makkah Logo */}
         <div className="relative four-color-border-box shadow-2xl overflow-hidden">

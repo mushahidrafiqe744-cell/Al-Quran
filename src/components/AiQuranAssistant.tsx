@@ -52,8 +52,18 @@ export const AiQuranAssistant: React.FC<AiQuranAssistantProps> = ({ initialQuest
   };
 
   return (
-    <section id="ai-assistant" className="py-16 bg-[#080C0B] text-slate-100 min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+    <section id="ai-assistant" className="py-16 bg-[#080C0B] text-slate-100 min-h-screen relative">
+      {/* Unique beautiful backdrop: Classical library books and scholar lights */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=1600&q=80"
+          alt="AI Scholar Library Backdrop"
+          className="w-full h-full object-cover object-center opacity-25 filter brightness-[35%] contrast-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/60 to-[#080C0B]/85"></div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Header */}
         <div className="text-center mb-8">

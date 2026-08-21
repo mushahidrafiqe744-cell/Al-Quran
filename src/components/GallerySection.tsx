@@ -15,8 +15,18 @@ export const GallerySection: React.FC = () => {
     : GALLERY_ITEMS.filter(item => item.category === selectedFilter);
 
   return (
-    <section id="gallery" className="py-16 bg-[#080C0B] text-slate-100 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="py-16 bg-[#080C0B] text-slate-100 min-h-screen relative">
+      {/* Unique beautiful backdrop: Reflective water courtyard and arches */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=80"
+          alt="Islamic Art Gallery Backdrop"
+          className="w-full h-full object-cover object-center opacity-25 filter brightness-[40%] contrast-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/60 to-[#080C0B]/85"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Title */}
         <div className="text-center mb-10">

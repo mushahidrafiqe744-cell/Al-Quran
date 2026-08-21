@@ -12,12 +12,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
   const [contactSubmitted, setContactSubmitted] = useState(false);
 
   return (
-    <footer className="bg-[#080C0B] text-slate-300 pt-16 pb-12 border-t border-[#C5A059]/20 relative">
+    <footer className="bg-[#080C0B] text-slate-300 pt-16 pb-12 border-t border-[#C5A059]/20 relative overflow-hidden">
+      {/* Unique beautiful backdrop: Deep starry sky mosque silhouette */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1600&q=80"
+          alt="Footer Backdrop"
+          className="w-full h-full object-cover object-center opacity-10 filter brightness-[30%] contrast-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050807] via-[#080C0B]/90 to-[#080C0B]/95"></div>
+      </div>
       
       {/* Geometric Decorative Top Border */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-600 via-[#C5A059] to-emerald-600"></div>
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-600 via-[#C5A059] to-emerald-600 z-10"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
           
           {/* Brand Info */}
