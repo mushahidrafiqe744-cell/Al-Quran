@@ -43,8 +43,8 @@ export const StickyAudioBar: React.FC<StickyAudioBarProps> = ({
           <span className="font-cinzel text-xs font-bold text-[#B45309] block truncate group-hover:text-emerald-800">
             Surah {currentSurah.englishName} ({currentSurah.number}:{currentAyahNumber || 1})
           </span>
-          <span className="text-[10px] text-emerald-600 font-medium block truncate">
-            {reciter.name}
+          <span className={`text-[10px] font-medium block truncate ${reciter.gender === 'female' ? 'text-rose-600 font-semibold' : 'text-emerald-600'}`}>
+            {reciter.gender === 'female' ? '🌸 ' : ''}{reciter.name}
           </span>
         </div>
       </div>

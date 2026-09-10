@@ -314,18 +314,25 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
 
               {/* Reciter Selector */}
               <div>
-                <label className="text-emerald-850 font-bold mb-2 block">Audio Reciter</label>
+                <label className="text-emerald-850 font-bold mb-2 block">Audio Reciter / Voice</label>
                 <select
                   value={selectedReciter.id}
                   onChange={(e) => {
                     const r = RECITERS.find(x => x.id === e.target.value);
                     if (r) setSelectedReciter(r);
                   }}
-                  className="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-lg p-2 outline-none"
+                  className="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-lg p-2 outline-none font-medium"
                 >
-                  {RECITERS.map((r) => (
-                    <option key={r.id} value={r.id}>{r.name} ({r.arabicName})</option>
-                  ))}
+                  <optgroup label="🌸 Female Voice (قاریہ / نسائی آواز)">
+                    {RECITERS.filter(r => r.gender === 'female').map((r) => (
+                      <option key={r.id} value={r.id}>🌸 {r.name} - {r.arabicName}</option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="🎙️ World-Renowned Qaris (شیوخ وقراء)">
+                    {RECITERS.filter(r => r.gender !== 'female').map((r) => (
+                      <option key={r.id} value={r.id}>{r.name} ({r.arabicName})</option>
+                    ))}
+                  </optgroup>
                 </select>
               </div>
 
@@ -467,7 +474,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
                                 </div>
 
                                 <button
-                                  onClick={() => onPlayAyahAudio(surahNumber, ayah.numberInSurah, ayah.audioUrl)}
+                                  onClick={() => onPlayAyahAudio(surahNumber, ayah.numberInSurah, selectedReciter.voiceMode === 'speech' ? undefined : ayah.audioUrl)}
                                   className={`p-1.5 px-3 rounded-xl transition-all flex items-center gap-1.5 text-xs font-semibold ${
                                     isPlaying 
                                       ? 'bg-[#D4AF37] text-slate-950 font-bold shadow-sm' 
@@ -646,7 +653,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
                         </div>
 
                         <button
-                          onClick={() => onPlayAyahAudio(surahNumber, ayah.numberInSurah, ayah.audioUrl)}
+                          onClick={() => onPlayAyahAudio(surahNumber, ayah.numberInSurah, selectedReciter.voiceMode === 'speech' ? undefined : ayah.audioUrl)}
                           className={`p-2 rounded-xl transition-all flex items-center gap-1 text-xs font-semibold border ${
                             isPlaying 
                               ? 'bg-[#D4AF37] border-[#D4AF37] text-slate-950 font-bold shadow-sm' 

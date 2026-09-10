@@ -44,8 +44,15 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
 }) => {
   const [volume, setVolume] = useState<number>(0.9);
   const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [reciterCategory, setReciterCategory] = useState<'all' | 'female' | 'male'>('all');
 
   const currentSurah = ALL_SURAHS.find(s => s.number === currentSurahNumber) || ALL_SURAHS[0];
+
+  const filteredReciters = RECITERS.filter(r => {
+    if (reciterCategory === 'female') return r.gender === 'female';
+    if (reciterCategory === 'male') return r.gender !== 'female';
+    return true;
+  });
 
   return (
     <section id="audio-suite" className="py-16 bg-[#F8FAF8] text-slate-800 min-h-screen flex items-center justify-center relative">
@@ -172,29 +179,88 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
             
             {/* Reciter Card Selector */}
             <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-md">
-              <h4 className="font-cinzel text-sm font-bold text-emerald-850 uppercase tracking-wider mb-4 flex items-center gap-2">
-                <Music className="w-4 h-4 text-emerald-600" />
-                <span>Select Qari / Reciter</span>
-              </h4>
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="font-cinzel text-sm font-bold text-emerald-850 uppercase tracking-wider flex items-center gap-2">
+                  <Music className="w-4 h-4 text-emerald-600" />
+                  <span>Select Voice / Reciter</span>
+                </h4>
+                {selectedReciter.gender === 'female' && (
+                  <span className="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200 text-[10px] font-bold">
+                    🌸 Female Voice
+                  </span>
+                )}
+              </div>
+
+              {/* Voice Category Filters */}
+              <div className="flex gap-1.5 p-1 bg-slate-50 border border-slate-200 rounded-xl mb-3">
+                <button
+                  onClick={() => setReciterCategory('all')}
+                  className={`flex-1 py-1 text-[11px] font-bold rounded-lg transition-all ${
+                    reciterCategory === 'all' 
+                      ? 'bg-white text-emerald-800 shadow-sm border border-slate-200' 
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  All ({RECITERS.length})
+                </button>
+                <button
+                  onClick={() => setReciterCategory('female')}
+                  className={`flex-1 py-1 text-[11px] font-bold rounded-lg transition-all flex items-center justify-center gap-1 ${
+                    reciterCategory === 'female' 
+                      ? 'bg-rose-50 text-rose-800 shadow-sm border border-rose-200' 
+                      : 'text-slate-500 hover:text-rose-700'
+                  }`}
+                >
+                  <span>🌸 Female ({RECITERS.filter(r => r.gender === 'female').length})</span>
+                </button>
+                <button
+                  onClick={() => setReciterCategory('male')}
+                  className={`flex-1 py-1 text-[11px] font-bold rounded-lg transition-all ${
+                    reciterCategory === 'male' 
+                      ? 'bg-white text-emerald-800 shadow-sm border border-slate-200' 
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  Qaris ({RECITERS.filter(r => r.gender !== 'female').length})
+                </button>
+              </div>
 
               <div className="space-y-2 max-h-60 overflow-y-auto pr-2">
-                {RECITERS.map((reciter) => {
+                {filteredReciters.map((reciter) => {
                   const isSelected = selectedReciter.id === reciter.id;
+                  const isFemale = reciter.gender === 'female';
                   return (
                     <div
                       key={reciter.id}
                       onClick={() => onChangeReciter(reciter)}
                       className={`p-3 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
                         isSelected 
-                          ? 'bg-emerald-50 border-[#D4AF37] text-emerald-800' 
-                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-emerald-50/50'
+                          ? isFemale 
+                            ? 'bg-rose-50/80 border-rose-300 text-rose-900 shadow-sm' 
+                            : 'bg-emerald-50 border-[#D4AF37] text-emerald-800' 
+                          : isFemale
+                            ? 'bg-rose-50/20 border-rose-100 text-slate-700 hover:bg-rose-50/50'
+                            : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-emerald-50/50'
                       }`}
                     >
                       <div>
-                        <span className="font-bold text-xs block">{reciter.name}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-xs block">{reciter.name}</span>
+                          {reciter.badge && (
+                            <span className={`text-[9px] px-1.5 py-0.2 rounded-md font-semibold ${
+                              isFemale 
+                                ? 'bg-rose-100 text-rose-800 border border-rose-200' 
+                                : 'bg-emerald-100 text-emerald-800'
+                            }`}>
+                              {reciter.badge}
+                            </span>
+                          )}
+                        </div>
                         <span className="font-amiri text-xs text-[#B45309]">{reciter.arabicName}</span>
                       </div>
-                      {isSelected && <Sparkles className="w-4 h-4 text-[#D4AF37]" />}
+                      {isSelected && (
+                        <Sparkles className={`w-4 h-4 ${isFemale ? 'text-rose-500' : 'text-[#D4AF37]'}`} />
+                      )}
                     </div>
                   );
                 })}

@@ -14,6 +14,8 @@ import { StickyAudioBar } from './components/StickyAudioBar';
 
 import { Bookmark, ReadingHistory, Reciter } from './types';
 import { RECITERS, ALL_SURAHS } from './data/quranData';
+import { voiceEngine } from './services/voiceEngine';
+import { fetchAyahDetail } from './services/quranApi';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -64,16 +66,77 @@ export default function App() {
   useEffect(() => { isLoopingRef.current = isLooping; }, [isLooping]);
 
   // Play Audio for Specific Verse / Surah
-  const handlePlayAyahAudio = (surahNum: number, ayahNum: number = 1, audioUrl?: string, overrideReciter?: Reciter) => {
+  const handlePlayAyahAudio = async (
+    surahNum: number, 
+    ayahNum: number = 1, 
+    audioUrl?: string, 
+    overrideReciter?: Reciter
+  ) => {
     const activeReciter = overrideReciter || selectedReciterRef.current;
     setAudioSurah(surahNum);
     setAudioAyah(ayahNum);
     setShowStickyAudio(true);
 
+    // If Female Speech Synthesis Voice is active
+    if (activeReciter.voiceMode === 'speech') {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+
+      setIsPlaying(true);
+      const detail = await fetchAyahDetail(surahNum, ayahNum);
+      
+      let speechText = detail.textArabic;
+      let speechLang: 'ar' | 'ur' | 'en' = 'ar';
+
+      if (activeReciter.language === 'ur') {
+        speechText = detail.translationUr || detail.textArabic;
+        speechLang = 'ur';
+      } else if (activeReciter.language === 'en') {
+        speechText = detail.translationEn || detail.textArabic;
+        speechLang = 'en';
+      } else if (activeReciter.language === 'ar-ur') {
+        speechText = `${detail.textArabic}. ترجمہ: ${detail.translationUr || ''}`;
+        speechLang = 'ur';
+      } else {
+        speechText = detail.textArabic;
+        speechLang = 'ar';
+      }
+
+      voiceEngine.speak({
+        text: speechText,
+        lang: speechLang,
+        rate: playbackSpeed,
+        pitch: 1.25,
+        onStart: () => setIsPlaying(true),
+        onEnd: () => {
+          if (isLoopingRef.current) {
+            handlePlayAyahAudio(audioSurahRef.current, audioAyahRef.current);
+            return;
+          }
+
+          const currentSurahObj = ALL_SURAHS.find(s => s.number === audioSurahRef.current);
+          const totalAyahs = currentSurahObj ? currentSurahObj.numberOfAyahs : 7;
+
+          if (audioAyahRef.current < totalAyahs) {
+            const nextAyah = audioAyahRef.current + 1;
+            handlePlayAyahAudio(audioSurahRef.current, nextAyah);
+          } else if (audioSurahRef.current < 114) {
+            handlePlayAyahAudio(audioSurahRef.current + 1, 1);
+          } else {
+            setIsPlaying(false);
+          }
+        },
+        onError: () => setIsPlaying(false)
+      });
+      return;
+    }
+
+    // Standard Audio Stream CDN
+    voiceEngine.stop();
     const formattedSurah = String(surahNum).padStart(3, '0');
     const formattedAyah = String(ayahNum).padStart(3, '0');
     
-    // High Quality Audio Stream CDN from EveryAyah per reciter
     const finalUrl = audioUrl || `https://everyayah.com/data/${activeReciter.identifier}/${formattedSurah}${formattedAyah}.mp3`;
 
     if (audioRef.current) {
@@ -88,7 +151,9 @@ export default function App() {
   // Change Qari / Reciter and immediately update audio stream
   const handleReciterChange = (newReciter: Reciter) => {
     setSelectedReciter(newReciter);
-    handlePlayAyahAudio(audioSurahRef.current, audioAyahRef.current, undefined, newReciter);
+    if (isPlaying) {
+      handlePlayAyahAudio(audioSurahRef.current, audioAyahRef.current, undefined, newReciter);
+    }
   };
 
   // Initialize HTML5 Audio Element & Auto-Advancing
@@ -121,6 +186,7 @@ export default function App() {
     return () => {
       audio.removeEventListener('ended', handleEnded);
       audio.pause();
+      voiceEngine.stop();
     };
   }, []);
 
@@ -186,6 +252,16 @@ export default function App() {
   };
 
   const handleTogglePlay = () => {
+    if (selectedReciter.voiceMode === 'speech') {
+      if (isPlaying) {
+        voiceEngine.stop();
+        setIsPlaying(false);
+      } else {
+        handlePlayAyahAudio(audioSurah, audioAyah);
+      }
+      return;
+    }
+
     if (!audioRef.current) return;
     if (isPlaying) {
       audioRef.current.pause();

@@ -81,6 +81,42 @@ export async function fetchSurahAyahs(
   }
 }
 
+export async function fetchAyahDetail(
+  surahNumber: number,
+  ayahNumber: number
+): Promise<{ textArabic: string; translationEn: string; translationUr?: string }> {
+  try {
+    const cached = PRECACHED_SURAHS[surahNumber];
+    if (cached) {
+      const a = cached.ayahs.find(item => item.numberInSurah === ayahNumber);
+      if (a) {
+        return {
+          textArabic: a.textArabic,
+          translationEn: a.translationEn,
+          translationUr: a.translationUr || 'اللہ کے نام سے جو نہایت مہربان بہت رحم والا ہے۔'
+        };
+      }
+    }
+
+    const res = await fetch(`${ALQURAN_CLOUD_BASE}/ayah/${surahNumber}:${ayahNumber}/editions/quran-uthmani,en.sahih,ur.jalandhry`);
+    if (!res.ok) throw new Error('Failed to fetch ayah detail');
+    const data = await res.json();
+    const editions = data.data || [];
+    
+    return {
+      textArabic: editions[0]?.text || 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',
+      translationEn: editions[1]?.text || '',
+      translationUr: editions[2]?.text || ''
+    };
+  } catch {
+    return {
+      textArabic: 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',
+      translationEn: 'In the name of Allah, the Entirely Merciful, the Especially Merciful.',
+      translationUr: 'اللہ کے نام سے جو نہایت مہربان بہت رحم والا ہے۔'
+    };
+  }
+}
+
 export async function fetchPrayerTimesByCoords(lat: number, lng: number) {
   try {
     const res = await fetch(

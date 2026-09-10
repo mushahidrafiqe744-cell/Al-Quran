@@ -1,13 +1,53 @@
 import { Surah, Reciter, AllahName, DuaItem, GalleryItem } from '../types';
 
 export const RECITERS: Reciter[] = [
-  { id: 'alafasy', name: 'Mishary Rashid Alafasy', arabicName: 'مشاري راشد العفاسي', identifier: 'Alafasy_128kbps' },
-  { id: 'sudais', name: 'Abdul Rahman Al-Sudais', arabicName: 'عبد الرحمن السديس', identifier: 'Abdurrahmaan_As-Sudais_192kbps' },
-  { id: 'shatri', name: 'Abu Bakr Al-Shatri', arabicName: 'أبو بكر الشاطري', identifier: 'Abu_Bakr_Ash-Shaatree_128kbps' },
-  { id: 'ghamdi', name: 'Saad Al-Ghamdi', arabicName: 'سعد الغامدي', identifier: 'Ghamadi_40kbps' },
-  { id: 'husary', name: 'Mahmoud Khalil Al-Husary', arabicName: 'محمود خليل الحصري', identifier: 'Husary_128kbps' },
-  { id: 'dosari', name: 'Yasser Al-Dosari', arabicName: 'ياسر الدوسري', identifier: 'Yasser_Ad-Dussary_128kbps' },
-  { id: 'abdulbasit', name: 'Abdul Basit Abdul Samad', arabicName: 'عبد الباسط عبد الصمد', identifier: 'Abdul_Basit_Murattal_192kbps' },
+  { 
+    id: 'female_qariah', 
+    name: 'Female Voice (Qariah Tilawat)', 
+    arabicName: 'صوت القارئة (تلاوة نسائية)', 
+    identifier: 'female_qariah', 
+    gender: 'female', 
+    voiceMode: 'speech', 
+    language: 'ar', 
+    badge: 'Female Voice' 
+  },
+  { 
+    id: 'female_urdu', 
+    name: 'Female Voice (Urdu Translation)', 
+    arabicName: 'صوت نسائي (اردو ترجمہ)', 
+    identifier: 'female_urdu', 
+    gender: 'female', 
+    voiceMode: 'speech', 
+    language: 'ur', 
+    badge: 'Urdu Voice' 
+  },
+  { 
+    id: 'female_english', 
+    name: 'Female Voice (English Translation)', 
+    arabicName: 'صوت نسائي (English Translation)', 
+    identifier: 'female_english', 
+    gender: 'female', 
+    voiceMode: 'speech', 
+    language: 'en', 
+    badge: 'English Voice' 
+  },
+  { 
+    id: 'female_combo', 
+    name: 'Female Voice (Arabic + Urdu)', 
+    arabicName: 'تلاوة وترجمة نسائية', 
+    identifier: 'female_combo', 
+    gender: 'female', 
+    voiceMode: 'speech', 
+    language: 'ar-ur', 
+    badge: 'Arabic + Urdu' 
+  },
+  { id: 'alafasy', name: 'Mishary Rashid Alafasy', arabicName: 'مشاري راشد العفاسي', identifier: 'Alafasy_128kbps', gender: 'male', voiceMode: 'audio' },
+  { id: 'sudais', name: 'Abdul Rahman Al-Sudais', arabicName: 'عبد الرحمن السديس', identifier: 'Abdurrahmaan_As-Sudais_192kbps', gender: 'male', voiceMode: 'audio' },
+  { id: 'shatri', name: 'Abu Bakr Al-Shatri', arabicName: 'أبو بكر الشاطري', identifier: 'Abu_Bakr_Ash-Shaatree_128kbps', gender: 'male', voiceMode: 'audio' },
+  { id: 'ghamdi', name: 'Saad Al-Ghamdi', arabicName: 'سعد الغامدي', identifier: 'Ghamadi_40kbps', gender: 'male', voiceMode: 'audio' },
+  { id: 'husary', name: 'Mahmoud Khalil Al-Husary', arabicName: 'محمود خليل الحصري', identifier: 'Husary_128kbps', gender: 'male', voiceMode: 'audio' },
+  { id: 'dosari', name: 'Yasser Al-Dosari', arabicName: 'ياسر الدوسري', identifier: 'Yasser_Ad-Dussary_128kbps', gender: 'male', voiceMode: 'audio' },
+  { id: 'abdulbasit', name: 'Abdul Basit Abdul Samad', arabicName: 'عبد الباسط عبد الصمد', identifier: 'Abdul_Basit_Murattal_192kbps', gender: 'male', voiceMode: 'audio' },
 ];
 
 export const ALL_SURAHS: Surah[] = [

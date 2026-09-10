@@ -21,6 +21,7 @@ export interface Ayah {
   textArabic: string;
   textUthmani?: string;
   translationEn: string;
+  translationUr?: string;
   transliterationEn?: string;
   words?: WordByWord[];
   juz: number;
@@ -35,7 +36,11 @@ export interface Reciter {
   name: string;
   arabicName: string;
   style?: string;
-  identifier: string; // Alquran Cloud identifier e.g. ar.alafasy
+  identifier: string; // Alquran Cloud identifier or voice ID
+  gender?: 'male' | 'female';
+  voiceMode?: 'speech' | 'audio';
+  language?: 'ar' | 'ur' | 'en' | 'ar-ur';
+  badge?: string;
 }
 
 export interface Bookmark {
