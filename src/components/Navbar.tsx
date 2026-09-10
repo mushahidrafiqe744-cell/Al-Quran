@@ -51,19 +51,18 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
+  const navItems: Array<{ id: string; label: string; icon: any; badge?: string }> = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'quran', label: 'Quran Reader', icon: BookOpen },
     { id: 'audio', label: 'Audio Recitations', icon: Volume2 },
     { id: 'prayer', label: 'Prayer & Qibla', icon: Compass },
     { id: 'tools', label: 'Islamic Tools', icon: Calculator },
-    { id: 'ai', label: 'AI Assistant', icon: Sparkles, badge: 'AI' },
     { id: 'gallery', label: 'Gallery', icon: Grid },
   ];
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'py-3 bg-[#080C0B]/90 backdrop-blur-md border-b border-[#C5A059]/20 shadow-xl' : 'py-5 bg-transparent'
+      isScrolled ? 'py-3 bg-white/95 backdrop-blur-md border-b border-[#D4AF37]/30 shadow-md' : 'py-5 bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -73,23 +72,23 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => setActiveTab('home')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="relative p-1 rounded-xl bg-gradient-to-br from-[#C5A059]/20 to-emerald-950/40 border border-[#C5A059]/40 flex items-center justify-center shadow-lg group-hover:border-[#C5A059] transition-all">
+            <div className="relative p-1 rounded-xl bg-gradient-to-br from-[#D4AF37]/20 to-emerald-100 border border-[#D4AF37]/40 flex items-center justify-center shadow-md group-hover:border-[#D4AF37] transition-all">
               <MakkahKaabaIcon size={28} />
-              <div className="absolute -inset-0.5 rounded-xl bg-[#C5A059]/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute -inset-0.5 rounded-xl bg-[#D4AF37]/25 blur-sm opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
             <div>
               <span className="font-cinzel text-lg sm:text-xl font-bold tracking-wider gold-gradient-text block leading-none flex items-center gap-1.5">
                 <span>AL-QURAN</span>
-                <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#C5A059]/20 text-[#FFF1CB] border border-[#C5A059]/40">مكة</span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">مكة</span>
               </span>
-              <span className="text-[10px] text-emerald-400 tracking-widest uppercase font-medium">
+              <span className="text-[10px] text-emerald-700 tracking-widest uppercase font-medium">
                 The Divine Guidance
               </span>
             </div>
           </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-[#0D1512]/80 p-1.5 rounded-full border border-[#C5A059]/20 shadow-inner">
+          <nav className="hidden lg:flex items-center gap-1 bg-slate-100/95 p-1.5 rounded-full border border-slate-200/80 shadow-sm">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -99,21 +98,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => setActiveTab(item.id)}
                   className={`relative px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 flex items-center gap-2 ${
                     isActive 
-                      ? 'text-[#FFF1CB] bg-gradient-to-r from-emerald-950/80 to-[#C5A059]/20 border border-[#C5A059]/40 shadow-md' 
-                      : 'text-slate-300 hover:text-amber-200 hover:bg-[#121c19]/60'
+                      ? 'text-emerald-800 bg-white border border-[#D4AF37]/40 shadow-sm' 
+                      : 'text-slate-700 hover:text-emerald-700 hover:bg-slate-200/60'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#C5A059]' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#D4AF37]' : 'text-slate-500'}`} />
                   <span>{item.label}</span>
                   {item.badge && (
-                    <span className="px-1.5 py-0.5 text-[9px] font-bold uppercase rounded-full bg-[#C5A059]/30 text-[#FFF1CB] border border-[#C5A059]/50">
+                    <span className="px-1.5 py-0.5 text-[9px] font-bold uppercase rounded-full bg-[#D4AF37]/20 text-[#B45309] border border-[#D4AF37]/40">
                       {item.badge}
                     </span>
                   )}
                   {isActive && (
                     <motion.div
                       layoutId="activeTabGlow"
-                      className="absolute inset-0 rounded-full bg-[#C5A059]/10 pointer-events-none"
+                      className="absolute inset-0 rounded-full bg-emerald-600/5 pointer-events-none"
                     />
                   )}
                 </button>
@@ -130,26 +129,26 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center bg-[#0F1815] border border-[#C5A059]/30 rounded-full px-3 py-1.5 text-xs text-slate-200 shadow-inner"
+                  className="flex items-center bg-white border border-[#D4AF37]/30 rounded-full px-3 py-1.5 text-xs text-slate-800 shadow-sm"
                 >
-                  <Search className="w-3.5 h-3.5 text-[#C5A059] mr-2" />
+                  <Search className="w-3.5 h-3.5 text-[#D4AF37] mr-2" />
                   <input
                     type="text"
                     placeholder="Search Surah or Ayah..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="bg-transparent border-none outline-none w-32 sm:w-48 text-xs text-slate-100 placeholder-slate-400"
+                    className="bg-transparent border-none outline-none w-32 sm:w-48 text-xs text-slate-800 placeholder-slate-400"
                     autoFocus
                   />
                   <X 
-                    className="w-3.5 h-3.5 text-slate-400 hover:text-[#C5A059] cursor-pointer ml-1" 
+                    className="w-3.5 h-3.5 text-slate-400 hover:text-[#D4AF37] cursor-pointer ml-1" 
                     onClick={() => { setSearchOpen(false); setSearchTerm(''); }}
                   />
                 </motion.div>
               ) : (
                 <button
                   onClick={() => setSearchOpen(true)}
-                  className="p-2.5 rounded-full bg-[#0D1512] text-slate-300 hover:text-[#C5A059] border border-[#C5A059]/20 hover:border-[#C5A059]/50 transition-all"
+                  className="p-2.5 rounded-full bg-slate-100 text-slate-600 hover:text-[#D4AF37] border border-slate-200 hover:border-slate-300 shadow-sm transition-all"
                   title="Search Surah or Ayah"
                 >
                   <Search className="w-4 h-4" />
@@ -160,12 +159,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Bookmarks Counter Button */}
             <button
               onClick={openBookmarksModal}
-              className="relative p-2.5 rounded-full bg-[#0D1512] text-slate-300 hover:text-[#C5A059] border border-[#C5A059]/20 hover:border-[#C5A059]/50 transition-all"
+              className="relative p-2.5 rounded-full bg-slate-100 text-slate-600 hover:text-[#D4AF37] border border-slate-200 hover:border-slate-300 shadow-sm transition-all"
               title="Saved Bookmarks"
             >
-              <Bookmark className="w-4 h-4 text-[#C5A059]" />
+              <Bookmark className="w-4 h-4 text-[#D4AF37]" />
               {bookmarksCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#C5A059] text-slate-950 font-bold text-[10px] flex items-center justify-center shadow-md">
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#D4AF37] text-white font-bold text-[10px] flex items-center justify-center shadow-md">
                   {bookmarksCount}
                 </span>
               )}
@@ -176,8 +175,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={toggleAudioBar}
               className={`p-2.5 rounded-full border transition-all ${
                 isAudioPlaying 
-                  ? 'bg-[#C5A059]/20 border-[#C5A059] text-[#FFF1CB] animate-pulse' 
-                  : 'bg-[#0D1512] border-[#C5A059]/20 text-slate-300 hover:text-[#C5A059]'
+                  ? 'bg-emerald-50 border-[#D4AF37] text-[#B45309] animate-pulse shadow-sm' 
+                  : 'bg-slate-100 border-slate-200 text-slate-600 hover:text-[#D4AF37] shadow-sm'
               }`}
               title="Quran Audio Player"
             >
@@ -187,9 +186,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2.5 rounded-full bg-[#0D1512] text-slate-300 border border-[#C5A059]/20"
+              className="lg:hidden p-2.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200 shadow-sm"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-[#C5A059]" /> : <Menu className="w-5 h-5 text-slate-300" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-[#D4AF37]" /> : <Menu className="w-5 h-5 text-slate-600" />}
             </button>
           </div>
 
@@ -203,7 +202,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-[#0A100E] border-b border-[#C5A059]/20 px-4 pt-3 pb-6 mt-3 shadow-2xl"
+            className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 mt-3 shadow-xl"
           >
             <div className="grid grid-cols-2 gap-2">
               {navItems.map((item) => {
@@ -218,11 +217,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                     }}
                     className={`flex items-center gap-3 p-3 rounded-xl text-xs font-semibold transition-all ${
                       isActive 
-                        ? 'bg-[#C5A059]/20 text-[#FFF1CB] border border-[#C5A059]/40' 
-                        : 'bg-[#121c19] text-slate-300 hover:bg-slate-800'
+                        ? 'bg-emerald-50 text-emerald-800 border border-[#D4AF37]/40 shadow-sm' 
+                        : 'bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-100'
                     }`}
                   >
-                    <Icon className="w-4 h-4 text-[#C5A059]" />
+                    <Icon className="w-4 h-4 text-emerald-700" />
                     <span>{item.label}</span>
                   </button>
                 );

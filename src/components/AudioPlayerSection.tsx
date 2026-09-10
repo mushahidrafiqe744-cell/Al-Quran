@@ -48,29 +48,29 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
   const currentSurah = ALL_SURAHS.find(s => s.number === currentSurahNumber) || ALL_SURAHS[0];
 
   return (
-    <section id="audio-suite" className="py-16 bg-[#080C0B] text-slate-100 min-h-screen flex items-center justify-center relative">
+    <section id="audio-suite" className="py-16 bg-[#F8FAF8] text-slate-800 min-h-screen flex items-center justify-center relative">
       {/* Unique beautiful backdrop: Detailed golden Mosque Dome ceiling */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1600&q=80"
           alt="Audio Sanctuary Backdrop"
-          className="w-full h-full object-cover object-center opacity-25 filter brightness-[40%] contrast-110"
+          className="w-full h-full object-cover object-center opacity-20 filter brightness-100 contrast-100"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080C0B] via-[#080C0B]/60 to-[#080C0B]/85"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#F8FAF8] via-[#F8FAF8]/85 to-[#F8FAF8]/75"></div>
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 w-full relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C5A059]/10 border border-[#C5A059]/30 text-[#FFF1CB] text-xs font-bold uppercase tracking-widest mb-3">
-            <Volume2 className="w-4 h-4 text-emerald-400" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-widest mb-3">
+            <Volume2 className="w-4 h-4 text-emerald-600" />
             <span>Spiritual Sanctuary</span>
           </div>
           <h2 className="font-cinzel text-3xl sm:text-5xl font-extrabold gold-gradient-text">
             Quran Recitations Studio
           </h2>
-          <p className="text-slate-400 text-sm max-w-xl mx-auto mt-2">
+          <p className="text-slate-500 text-sm max-w-xl mx-auto mt-2">
             Listen to soul-stirring recitations by world-renowned Qaris with high-fidelity audio controls.
           </p>
         </div>
@@ -78,32 +78,32 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* Main Vinyl / Digital Turntable Card */}
-          <div className="lg:col-span-7 bg-[#0E1714] border-2 border-[#C5A059]/30 rounded-3xl p-8 shadow-2xl relative overflow-hidden flex flex-col items-center">
+          <div className="lg:col-span-7 bg-white border border-slate-200 rounded-3xl p-8 shadow-md relative overflow-hidden flex flex-col items-center">
             
-            <div className="absolute top-0 right-0 w-48 h-48 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-48 h-48 bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none"></div>
 
             {/* Rotating Album Art Disk */}
-            <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full bg-gradient-to-tr from-[#C5A059]/20 via-[#121d19] to-emerald-500/20 p-2 shadow-[0_0_50px_rgba(197,160,89,0.2)] mb-6">
-              <div className={`w-full h-full rounded-full bg-[#080C0B] border-4 border-[#C5A059]/40 flex flex-col items-center justify-center text-center p-4 ${isPlaying ? 'animate-spin' : ''}`} style={{ animationDuration: '20s' }}>
-                <span className="font-amiri text-4xl text-[#C5A059] font-bold mb-1">
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full bg-gradient-to-tr from-emerald-500/10 via-slate-100 to-[#D4AF37]/10 p-2 shadow-sm mb-6">
+              <div className={`w-full h-full rounded-full bg-slate-900 border-4 border-[#D4AF37]/40 flex flex-col items-center justify-center text-center p-4 ${isPlaying ? 'animate-spin' : ''}`} style={{ animationDuration: '20s' }}>
+                <span className="font-amiri text-4xl text-[#D4AF37] font-bold mb-1">
                   {currentSurah.name}
                 </span>
                 <span className="font-cinzel text-xs font-bold text-[#FFF1CB] uppercase tracking-widest">
                   SURAH {currentSurah.number}
                 </span>
               </div>
-              <div className="absolute inset-0 rounded-full border border-[#C5A059]/20 pointer-events-none"></div>
+              <div className="absolute inset-0 rounded-full border border-slate-200/50 pointer-events-none"></div>
             </div>
 
             {/* Track Metadata */}
             <div className="text-center mb-6">
-              <h3 className="font-cinzel text-2xl font-bold text-slate-100 mb-1">
+              <h3 className="font-cinzel text-2xl font-bold text-slate-800 mb-1">
                 {currentSurah.englishName}
               </h3>
-              <p className="text-[#C5A059] text-xs font-semibold">
+              <p className="text-[#B45309] text-xs font-semibold">
                 "{currentSurah.englishNameTranslation}" • {currentSurah.numberOfAyahs} Verses
               </p>
-              <div className="inline-block mt-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs font-medium">
+              <div className="inline-block mt-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium">
                 Reciter: {selectedReciter.name} ({selectedReciter.arabicName})
               </div>
             </div>
@@ -115,7 +115,7 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
               <button
                 onClick={onToggleLoop}
                 className={`p-3 rounded-full border transition-all ${
-                  isLooping ? 'bg-[#C5A059]/30 text-[#FFF1CB] border-[#C5A059]' : 'bg-[#121d19] text-slate-400 border-slate-700 hover:text-slate-200'
+                  isLooping ? 'bg-emerald-50 text-emerald-800 border-emerald-300' : 'bg-slate-50 text-slate-500 border-slate-200 hover:text-slate-800'
                 }`}
                 title="Loop Mode"
               >
@@ -126,7 +126,7 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
               <button
                 disabled={currentSurahNumber <= 1}
                 onClick={() => onSelectSurah(currentSurahNumber - 1)}
-                className="p-3 rounded-full bg-[#121d19] border border-[#C5A059]/20 text-[#C5A059] hover:bg-[#C5A059]/20 disabled:opacity-30 transition-all"
+                className="p-3 rounded-full bg-slate-50 border border-slate-200 text-emerald-700 hover:bg-emerald-50 disabled:opacity-30 transition-all"
                 title="Previous Surah"
               >
                 <SkipBack className="w-5 h-5" />
@@ -135,7 +135,7 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
               {/* Big Play / Pause Button */}
               <button
                 onClick={onTogglePlay}
-                className="w-16 h-16 rounded-full bg-gradient-to-r from-emerald-600 to-[#C5A059] text-slate-950 flex items-center justify-center shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                className="w-16 h-16 rounded-full bg-gradient-to-r from-emerald-600 to-[#D4AF37] text-slate-950 flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer animate-pulse-glow"
               >
                 {isPlaying ? <Pause className="w-7 h-7 fill-current" /> : <Play className="w-7 h-7 fill-current ml-1" />}
               </button>
@@ -144,7 +144,7 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
               <button
                 disabled={currentSurahNumber >= 114}
                 onClick={() => onSelectSurah(currentSurahNumber + 1)}
-                className="p-3 rounded-full bg-[#121d19] border border-[#C5A059]/20 text-[#C5A059] hover:bg-[#C5A059]/20 disabled:opacity-30 transition-all"
+                className="p-3 rounded-full bg-slate-50 border border-slate-200 text-emerald-700 hover:bg-emerald-50 disabled:opacity-30 transition-all"
                 title="Next Surah"
               >
                 <SkipForward className="w-5 h-5" />
@@ -157,7 +157,7 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
                   const nextIdx = (speeds.indexOf(playbackSpeed) + 1) % speeds.length;
                   onChangePlaybackSpeed(speeds[nextIdx]);
                 }}
-                className="px-3 py-2 rounded-full bg-[#121d19] border border-slate-700 text-[#C5A059] text-xs font-bold hover:border-[#C5A059] transition-all"
+                className="px-3 py-2 rounded-full bg-slate-50 border border-slate-200 text-emerald-850 text-xs font-bold hover:border-emerald-500 transition-all"
                 title="Playback Speed"
               >
                 {playbackSpeed}x
@@ -171,9 +171,9 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
           <div className="lg:col-span-5 space-y-6">
             
             {/* Reciter Card Selector */}
-            <div className="bg-[#0E1714] border border-[#C5A059]/20 rounded-3xl p-6 shadow-xl">
-              <h4 className="font-cinzel text-sm font-bold text-[#C5A059] uppercase tracking-wider mb-4 flex items-center gap-2">
-                <Music className="w-4 h-4 text-emerald-400" />
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-md">
+              <h4 className="font-cinzel text-sm font-bold text-emerald-850 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <Music className="w-4 h-4 text-emerald-600" />
                 <span>Select Qari / Reciter</span>
               </h4>
 
@@ -186,15 +186,15 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
                       onClick={() => onChangeReciter(reciter)}
                       className={`p-3 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
                         isSelected 
-                          ? 'bg-[#C5A059]/20 border-[#C5A059] text-[#FFF1CB]' 
-                          : 'bg-[#121d19] border-slate-800 text-slate-300 hover:bg-[#182722]'
+                          ? 'bg-emerald-50 border-[#D4AF37] text-emerald-800' 
+                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-emerald-50/50'
                       }`}
                     >
                       <div>
                         <span className="font-bold text-xs block">{reciter.name}</span>
-                        <span className="font-amiri text-xs text-[#C5A059]/80">{reciter.arabicName}</span>
+                        <span className="font-amiri text-xs text-[#B45309]">{reciter.arabicName}</span>
                       </div>
-                      {isSelected && <Sparkles className="w-4 h-4 text-[#C5A059]" />}
+                      {isSelected && <Sparkles className="w-4 h-4 text-[#D4AF37]" />}
                     </div>
                   );
                 })}
@@ -202,9 +202,9 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
             </div>
 
             {/* Quick Surah Playlist */}
-            <div className="bg-[#0E1714] border border-[#C5A059]/20 rounded-3xl p-6 shadow-xl">
-              <h4 className="font-cinzel text-sm font-bold text-[#C5A059] uppercase tracking-wider mb-4 flex items-center gap-2">
-                <List className="w-4 h-4 text-emerald-400" />
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-md">
+              <h4 className="font-cinzel text-sm font-bold text-emerald-850 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <List className="w-4 h-4 text-emerald-600" />
                 <span>Surah Playlist</span>
               </h4>
 
@@ -215,14 +215,14 @@ export const AudioPlayerSection: React.FC<AudioPlayerSectionProps> = ({
                     <button
                       key={s.number}
                       onClick={() => onSelectSurah(s.number)}
-                      className={`w-full p-2.5 rounded-xl text-left text-xs transition-all flex items-center justify-between ${
+                      className={`w-full p-2.5 rounded-xl text-left text-xs transition-all flex items-center justify-between border ${
                         isCurrent 
-                          ? 'bg-gradient-to-r from-emerald-950/80 to-[#C5A059]/20 text-[#FFF1CB] font-bold border border-[#C5A059]/40 shadow-sm' 
-                          : 'bg-[#121d19] text-slate-300 hover:bg-[#182722]'
+                          ? 'bg-emerald-50 text-emerald-800 font-bold border-[#D4AF37] shadow-sm' 
+                          : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-emerald-50/40'
                       }`}
                     >
                       <span>{s.number}. {s.englishName}</span>
-                      <span className="font-amiri text-sm text-[#C5A059]">{s.name}</span>
+                      <span className="font-amiri text-sm text-[#B45309]">{s.name}</span>
                     </button>
                   );
                 })}

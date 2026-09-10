@@ -7,7 +7,6 @@ import { QuranReader } from './components/QuranReader';
 import { AudioPlayerSection } from './components/AudioPlayerSection';
 import { PrayerTimesSection } from './components/PrayerTimesSection';
 import { IslamicTools } from './components/IslamicTools';
-import { AiQuranAssistant } from './components/AiQuranAssistant';
 import { GallerySection } from './components/GallerySection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { Footer } from './components/Footer';
@@ -202,16 +201,8 @@ export default function App() {
     }
   };
 
-  const [aiInitialQuestion, setAiInitialQuestion] = useState('');
-
-  const handleAskAiAboutVerse = (surahName: string, surahNum: number, ayahNum: number, textEn: string) => {
-    setAiInitialQuestion(`Please explain the classical Tafsir and spiritual reflection of Surah ${surahName} (${surahNum}:${ayahNum}): "${textEn}"`);
-    setActiveTab('ai');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <div className="min-h-screen bg-[#080C0B] text-slate-100 font-sans selection:bg-[#C5A059] selection:text-slate-950">
+    <div className="min-h-screen bg-[#F8FAF8] text-slate-800 font-sans selection:bg-[#166534] selection:text-white">
       
       {/* Navigation Bar */}
       <Navbar
@@ -240,7 +231,6 @@ export default function App() {
             <Hero
               onStartReading={() => handleSelectSurah(1)}
               onListenAudio={() => setActiveTab('audio')}
-              onOpenAiAssistant={() => setActiveTab('ai')}
               onViewPrayerTimes={() => setActiveTab('prayer')}
               quickSurahJump={handleSelectSurah}
             />
@@ -272,7 +262,6 @@ export default function App() {
               onToggleBookmark={handleToggleBookmark}
               activePlayingAyah={isPlaying ? { surah: audioSurah, ayah: audioAyah } : null}
               onPlayAyahAudio={handlePlayAyahAudio}
-              onAskAiAboutVerse={handleAskAiAboutVerse}
             />
           ) : (
             <SurahList
@@ -306,9 +295,6 @@ export default function App() {
 
         {/* Islamic Tools Suite */}
         {activeTab === 'tools' && <IslamicTools />}
-
-        {/* AI Quran Scholar Assistant */}
-        {activeTab === 'ai' && <AiQuranAssistant initialQuestion={aiInitialQuestion} />}
 
         {/* Islamic Aesthetics Gallery */}
         {activeTab === 'gallery' && <GallerySection />}
