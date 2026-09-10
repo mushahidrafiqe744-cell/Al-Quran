@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { DailyVerseSection } from './components/DailyVerseSection';
@@ -319,6 +320,8 @@ export default function App() {
       {/* Footer */}
       <Footer onNavigateTab={(tab) => { setActiveTab(tab); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
 
+      {/* Vercel Analytics */}
+      <Analytics />
     </div>
   );
 }
